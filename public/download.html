@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Instal·la Micalet · Valencia News & Culture</title>
+  <meta name="description" content="Descarrega Micalet per a iOS i Android. Tota l'actualitat de València en una sola app.">
+  
+  <style>
+    :root {
+      --bg: #F8F9FA;
+      --card-bg: #FFFFFF;
+      --text: #1C1C1E;
+      --text-muted: #636366;
+      --accent: #E85D04;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0D1117;
+        --card-bg: #161B22;
+        --text: #F0F6FC;
+        --text-muted: #8B949E;
+        --accent: #FF8C42;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 36px 24px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+    .app-icon {
+      width: 88px;
+      height: 88px;
+      border-radius: 20px;
+      margin: 0 auto 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      display: block;
+    }
+    h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+    p.tagline { color: var(--text-muted); font-size: 14.5px; margin-bottom: 24px; line-height: 1.4; }
+    .badge-group { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+    .store-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .store-btn:active { transform: scale(0.98); opacity: 0.9; }
+    .store-btn.highlight { border: 2px solid var(--accent); }
+    .status-msg { font-size: 12.5px; color: var(--text-muted); min-height: 18px; }
+  </style>
+
+  <script>
+    // Configure your actual Store URLs here:
+    const IOS_URL = "https://apps.apple.com/app/idYOUR_APPLE_APP_ID";
+    const ANDROID_URL = "https://play.google.com/store/apps/details?id=es.melodicdiver.micalet";
+
+    function detectAndRedirect() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+      const isAndroid = /android/i.test(ua);
+      const statusEl = document.getElementById("status-text");
+
+      if (isIOS) {
+        document.getElementById("btn-ios").classList.add("highlight");
+        statusEl.textContent = "Redirigint a l'App Store...";
+        setTimeout(() => { window.location.href = IOS_URL; }, 600);
+      } else if (isAndroid) {
+        document.getElementById("btn-android").classList.add("highlight");
+        statusEl.textContent = "Redirigint a Google Play...";
+        setTimeout(() => { window.location.href = ANDROID_URL; }, 600);
+      } else {
+        statusEl.textContent = "Tria la teua plataforma";
+      }
+    }
+    window.addEventListener("DOMContentLoaded", detectAndRedirect);
+  </script>
+</head>
+<body>
+  <div class="card">
+    <img src="icon.png" alt="Micalet Logo" class="app-icon" onerror="this.style.display='none'">
+    <h1>Micalet</h1>
+    <p class="tagline">Actualitat, cultura i oratge de València en temps real.</p>
+
+    <div class="badge-group">
+      <!-- iOS Button -->
+      <a id="btn-ios" href="https://apps.apple.com/app/idYOUR_APPLE_APP_ID" class="store-btn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 0.92-2.85-.9.04-2 .6-2.65 1.34-.56.63-.99 1.68-.87 2.69 1 .08 2.02-.48 2.6-1.18z"/>
+        </svg>
+        <span>Descarrega a l'App Store</span>
+      </a>
+
+      <!-- Android Button -->
+      <a id="btn-android" href="https://play.google.com/store/apps/details?id=es.melodicdiver.micalet" class="store-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M3.609 1.814L13.792 12 3.61 22.186a2.03 2.03 0 0 1-.61-.954V2.768c.13-.357.34-.683.61-.954zm11.24 11.24l2.585 2.586-12.06 6.892 9.475-9.478zm2.585-4.054l-2.585 2.586L5.374 2.108l12.06 6.892zm1.056 1.057l3.147 1.799a1.05 1.05 0 0 1 0 1.83l-3.147 1.8-2.05-2.05 2.05-2.05z"/>
+        </svg>
+        <span>Disponible a Google Play</span>
+      </a>
+    </div>
+
+    <div id="status-text" class="status-msg"></div>
+  </div>
+</body>
+</html>
