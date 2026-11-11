@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soporte y Contacto / Suport i Contacte / Support · Micalet</title>
+  <meta name="description" content="Centro oficial de soporte y atención al usuario de Micalet. Contacta con nosotros para resolver dudas, reportar errores o solicitar asistencia técnica.">
+  <link rel="icon" type="image/png" href="/app-icon.png">
+  <style>
+    :root {
+      --bg: #F8F9FA;
+      --card-bg: #FFFFFF;
+      --text: #1C1C1E;
+      --text-muted: #636366;
+      --accent: #E85D04;
+      --accent-hover: #D85200;
+      --border: #E5E5EA;
+      --btn-inactive-bg: #F2F2F7;
+      --box-bg: rgba(232, 93, 4, 0.08);
+      --card-subtle: #F9FAFB;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121214;
+        --card-bg: #1C1C1E;
+        --text: #F2F2F7;
+        --text-muted: #8E8E93;
+        --accent: #FF8C42;
+        --accent-hover: #FFA266;
+        --border: #2C2C2E;
+        --btn-inactive-bg: #2C2C2E;
+        --box-bg: rgba(255, 140, 66, 0.12);
+        --card-subtle: #242428;
+      }
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--bg);
+      margin: 0;
+      padding: 32px 16px;
+    }
+    .container {
+      max-width: 780px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 36px 32px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 24px 20px;
+        border-radius: 16px;
+      }
+      body {
+        padding: 16px 12px;
+      }
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .brand-tag {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 15px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .lang-switcher {
+      display: inline-flex;
+      background: var(--btn-inactive-bg);
+      padding: 3px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(232, 93, 4, 0.3);
+    }
+    h1 {
+      font-size: 26px;
+      margin: 0 0 8px 0;
+      color: var(--text);
+      font-weight: 700;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 28px;
+    }
+    h2 {
+      font-size: 19px;
+      margin-top: 32px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      color: var(--text);
+    }
+    p, li {
+      font-size: 15px;
+      color: var(--text);
+    }
+    ul {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .support-card {
+      background: var(--box-bg);
+      border: 1px solid var(--accent);
+      border-radius: 14px;
+      padding: 24px;
+      margin: 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .support-card h3 {
+      margin: 0;
+      font-size: 17px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .support-card p {
+      margin: 0;
+      font-size: 14.5px;
+    }
+    .email-link {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .email-link:hover {
+      text-decoration: underline;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #FFFFFF !important;
+      text-decoration: none;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-size: 14.5px;
+      font-weight: 600;
+      align-self: flex-start;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      margin-top: 4px;
+    }
+    .cta-btn:hover {
+      background: var(--accent-hover);
+      text-decoration: none;
+    }
+    .cta-btn:active {
+      transform: scale(0.98);
+    }
+    .faq-item {
+      background: var(--card-subtle);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 14px;
+    }
+    .faq-question {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    .faq-answer {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .app-meta-box {
+      margin-top: 36px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 13.5px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .lang-section {
+      display: none;
+    }
+    .lang-section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div class="brand">
+        <img src="/app-icon.png" alt="Micalet Icon" class="brand-icon" onerror="this.style.display='none'">
+        <span class="brand-tag">Micalet · Soporte</span>
+      </div>
+      <div class="lang-switcher">
+        <button type="button" class="lang-btn active" data-lang="es" onclick="switchLang('es')">ES</button>
+        <button type="button" class="lang-btn" data-lang="va" onclick="switchLang('va')">VA</button>
+        <button type="button" class="lang-btn" data-lang="en" onclick="switchLang('en')">EN</button>
+      </div>
+    </div>
+
+    <!-- SECCIÓN ESPAÑOL -->
+    <div id="content-es" class="lang-section active">
+      <h1>Centro de Ayuda y Soporte</h1>
+      <p class="subtitle">Estamos a tu disposición para ayudarte con cualquier consulta, reporte de error o sugerencia técnica sobre Micalet.</p>
+
+      <div class="support-card">
+        <h3>Contacto Directo con el Equipo de Desarrollo</h3>
+        <p>Si experimentas algún fallo en la aplicación, tienes una sugerencia o requieres asistencia técnica, escríbenos directamente a:</p>
+        <p><a href="mailto:melodicdiver@gmail.com?subject=[Micalet%20Soporte]%20Consulta%20o%20Incidencia" class="email-link">melodicdiver@gmail.com</a></p>
+        <p style="font-size: 13.5px; color: var(--text-muted);">⏱️ Plazo habitual de respuesta: entre 24 y 48 horas laborables.</p>
+        <a href="mailto:melodicdiver@gmail.com?subject=[Micalet%20Soporte]%20Consulta%20o%20Incidencia" class="cta-btn">
+          ✉️ Enviar correo de soporte
+        </a>
+      </div>
+
+      <h2>Preguntas Frecuentes (FAQ)</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">¿Cómo personalizo las fuentes de noticias que quiero leer?</div>
+        <div class="faq-answer">En la pestaña de <strong>Ajustes</strong>, accede a la sección <strong>Fuentes de noticias</strong>. Puedes activar o desactivar medios locales valencianos de forma individual según tus preferencias editoriales.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">¿Cómo añado un evento cultural o deportivo a mi calendario?</div>
+        <div class="faq-answer">En la pestaña de <strong>Agenda</strong>, pulsa sobre cualquier evento para ver su detalle y haz clic en el botón <strong>Añadir al calendario</strong>. La aplicación te solicitará permiso para crear la cita directamente en tu calendario nativo de iOS o Android.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">¿Micalet recopila mis datos personales o mi ubicación?</div>
+        <div class="faq-answer">No. Micalet no requiere registro, inicio de sesión ni cuentas de usuario. La consulta meteorológica y la ordenación de eventos se procesan sin almacenar tu identidad ni tu ubicación en servidores externos.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">¿Cómo cambio al modo oscuro o ajusto el tamaño de letra?</div>
+        <div class="faq-answer">En la pestaña de <strong>Ajustes</strong> encontrarás las opciones para elegir entre tema Claro, Oscuro o Automático (según el sistema operativo), así como 3 tamaños de tipografía para facilitar la lectura.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">¿Cómo puedo reportar un enlace roto o un error en la información?</div>
+        <div class="faq-answer">Pulsa en el botón superior o envíanos un correo a <a href="mailto:melodicdiver@gmail.com">melodicdiver@gmail.com</a> indicando el título de la noticia o el evento. Lo corregiremos a la mayor brevedad.</div>
+      </div>
+
+      <h2>Información de la Aplicación</h2>
+      <ul>
+        <li><strong>Nombre:</strong> Micalet (València)</li>
+        <li><strong>Compatibilidad:</strong> iOS 16.0 o posterior (iPhone e iPad) y Android 8.0 o posterior.</li>
+        <li><strong>Desarrollador:</strong> Equipo de Micalet</li>
+      </ul>
+    </div>
+
+    <!-- SECCIÓ VALENCIÀ -->
+    <div id="content-va" class="lang-section">
+      <h1>Centre d'Ajuda i Suport</h1>
+      <p class="subtitle">Estem a la teua disposició per a ajudar-te amb qualsevol consulta, informe d'error o suggeriment tècnic sobre Micalet.</p>
+
+      <div class="support-card">
+        <h3>Contacte Directe amb l'Equip de Desenvolupament</h3>
+        <p>Si experimentes alguna errada en l'aplicació, tens un suggeriment o requereixes assistència tècnica, escriu-nos directament a:</p>
+        <p><a href="mailto:melodicdiver@gmail.com?subject=[Micalet%20Suport]%20Consulta%20o%20Incid%C3%A8ncia" class="email-link">melodicdiver@gmail.com</a></p>
+        <p style="font-size: 13.5px; color: var(--text-muted);">⏱️ Termini habitual de resposta: entre 24 i 48 hores laborables.</p>
+        <a href="mailto:melodicdiver@gmail.com?subject=[Micalet%20Suport]%20Consulta%20o%20Incid%C3%A8ncia" class="cta-btn">
+          ✉️ Enviar correu de suport
+        </a>
+      </div>
+
+      <h2>Preguntes Més Freqüents (FAQ)</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">Com personalitze les fonts de notícies que vull llegir?</div>
+        <div class="faq-answer">En la pestanya d'<strong>Ajustos</strong>, accedix a la secció <strong>Fonts de notícies</strong>. Pots activar o desactivar mitjans locals valencians de manera individual segons les teues preferències.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Com afig un esdeveniment cultural o esportiu al meu calendari?</div>
+        <div class="faq-answer">En la pestanya d'<strong>Agenda</strong>, prem sobre qualsevol esdeveniment per a vore el seu detall i fes clic en el botó <strong>Afegir al calendari</strong>. L'aplicació et demanarà permís per a crear la cita directament en el teu calendari d'iOS o Android.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Micalet recopila les meues dades personals o la meua ubicació?</div>
+        <div class="faq-answer">No. Micalet no requerix registre, inici de sessió ni comptes d'usuari. La consulta meteorològica i la consulta d'esdeveniments es processen sense emmagatzemar la teua identitat ni la teua ubicació en servidors externs.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Com canvie al mode fosc o ajuste la grandària de lletra?</div>
+        <div class="faq-answer">En la pestanya d'<strong>Ajustos</strong> trobaràs les opcions per a triar entre tema Clar, Fosc o Automàtic (segons el sistema operatiu), així com 3 grandàries de text per a facilitar la lectura.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Com puc avisar d'un enllaç trencat o una errada en la informació?</div>
+        <div class="faq-answer">Prem en el botó superior o envia'ns un correu a <a href="mailto:melodicdiver@gmail.com">melodicdiver@gmail.com</a> indicant el títol de la notícia o esdeveniment. Ho revisarem ràpidament.</div>
+      </div>
+
+      <h2>Informació de l'Aplicació</h2>
+      <ul>
+        <li><strong>Nom:</strong> Micalet (València)</li>
+        <li><strong>Compatibilitat:</strong> iOS 16.0 o posterior (iPhone i iPad) i Android 8.0 o posterior.</li>
+        <li><strong>Desenvolupador:</strong> Equip de Micalet</li>
+      </ul>
+    </div>
+
+    <!-- ENGLISH SECTION -->
+    <div id="content-en" class="lang-section">
+      <h1>Help & Support Center</h1>
+      <p class="subtitle">We are here to assist you with any questions, technical issues, or feedback regarding Micalet.</p>
+
+      <div class="support-card">
+        <h3>Direct Developer Support</h3>
+        <p>If you experience any issue, have a suggestion, or require technical support, please contact us directly at:</p>
+        <p><a href="mailto:melodicdiver@gmail.com?subject=[Micalet%20Support]%20Inquiry%20or%20Issue" class="email-link">melodicdiver@gmail.com</a></p>
+        <p style="font-size: 13.5px; color: var(--text-muted);">⏱️ Typical response time: within 24 to 48 business hours.</p>
+        <a href="mailto:melodicdiver@gmail.com?subject=[Micalet%20Support]%20Inquiry%20or%20Issue" class="cta-btn">
+          ✉️ Send Support Email
+        </a>
+      </div>
+
+      <h2>Frequently Asked Questions (FAQ)</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">How can I customize my news sources?</div>
+        <div class="faq-answer">Navigate to the <strong>Settings</strong> tab and select <strong>News Sources</strong>. You can enable or disable individual local news outlets according to your preferences.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How do I add cultural or sports events to my personal calendar?</div>
+        <div class="faq-answer">In the <strong>Agenda</strong> tab, tap any event card to view details, then tap <strong>Add to Calendar</strong>. The app will prompt for permission to schedule the event in your native iOS or Android calendar.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">Does Micalet collect my personal data or track location?</div>
+        <div class="faq-answer">No. Micalet does not require any account creation, login, or registration. Weather and local data queries operate without storing personal profiles or precise GPS traces on external servers.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How do I enable Dark Mode or change font sizing?</div>
+        <div class="faq-answer">Go to <strong>Settings</strong> to toggle between Light, Dark, or System mode, and choose between 3 reading font sizes.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">How can I report a broken link or incorrect event information?</div>
+        <div class="faq-answer">Click the support button above or email us at <a href="mailto:melodicdiver@gmail.com">melodicdiver@gmail.com</a> with the headline or screenshot, and we will update it promptly.</div>
+      </div>
+
+      <h2>App Information</h2>
+      <ul>
+        <li><strong>App Name:</strong> Micalet (València)</li>
+        <li><strong>Compatibility:</strong> iOS 16.0 or later (iPhone and iPad), Android 8.0 or later.</li>
+        <li><strong>Developer:</strong> Micalet Team</li>
+      </ul>
+    </div>
+
+    <div class="app-meta-box">
+      <div>&copy; 2026 Micalet · València</div>
+      <div class="footer-links">
+        <a href="/privacy.html">Política de Privacidad</a>
+        <a href="/terms.html">Términos de Uso</a>
+        <a href="/download.html">Descargar App</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('.lang-section').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+
+      var target = document.getElementById('content-' + lang);
+      if (target) {
+        target.classList.add('active');
+      }
+
+      var activeBtn = document.querySelector('.lang-btn[data-lang="' + lang + '"]');
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+      }
+
+      try {
+        localStorage.setItem('micalet_support_lang', lang);
+      } catch (e) {}
+    }
+
+    (function() {
+      var saved = null;
+      try {
+        saved = localStorage.getItem('micalet_support_lang');
+      } catch (e) {}
+
+      var hash = (window.location.hash || '').replace('#', '').toLowerCase();
+      var lang = 'es';
+
+      if (hash === 'en' || hash === 'va' || hash === 'es') {
+        lang = hash;
+      } else if (saved === 'en' || saved === 'va' || saved === 'es') {
+        lang = saved;
+      } else {
+        var navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+        if (navLang.startsWith('ca') || navLang.startsWith('va')) {
+          lang = 'va';
+        } else if (navLang.startsWith('en')) {
+          lang = 'en';
+        }
+      }
+      switchLang(lang);
+    })();
+  </script>
+</body>
+</html>
