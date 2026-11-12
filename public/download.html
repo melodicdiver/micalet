@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Instala Micalet · Noticias, eventos y tiempo en Valencia</title>
   <meta name="description" content="Descarga Micalet para iOS y Android. Noticias de Valencia, agenda de eventos culturales y deportivos, y previsión del tiempo.">
-
   <style>
     :root {
       --bg: #F8F9FA;
@@ -19,7 +18,7 @@
         --bg: #0D1117;
         --card-bg: #161B22;
         --text: #F0F6FC;
-        --text-muted: #8B949E;
+        --text-muted: #8E8E93;
         --accent: #FF8C42;
       }
     }
@@ -72,11 +71,23 @@
     .store-btn.highlight { border: 2px solid var(--accent); }
     .status-msg { font-size: 12.5px; color: var(--text-muted); min-height: 18px; }
   </style>
-
   <script>
-    // Configure your actual Store URLs here:
-    const IOS_URL = "https://apps.apple.com/app/idYOUR_APPLE_APP_ID";
+    // Store URLs
+    const IOS_URL = "https://apps.apple.com/app/id6833057197";
     const ANDROID_URL = "https://play.google.com/store/apps/details?id=com.micalet.app";
+
+    function trackAndRedirect(platform, destinationUrl) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'store_redirect', {
+          platform: platform,
+          destination_url: destinationUrl,
+          source: new URLSearchParams(window.location.search).get('utm_source') || 'direct'
+        });
+      }
+      setTimeout(() => {
+        window.location.href = destinationUrl;
+      }, 750);
+    }
 
     function detectAndRedirect() {
       const ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -87,15 +98,24 @@
       if (isIOS) {
         document.getElementById("btn-ios").classList.add("highlight");
         statusEl.textContent = "Redirigiendo a App Store...";
-        setTimeout(() => { window.location.href = IOS_URL; }, 600);
+        trackAndRedirect('ios', IOS_URL);
       } else if (isAndroid) {
         document.getElementById("btn-android").classList.add("highlight");
         statusEl.textContent = "Redirigiendo a Google Play...";
-        setTimeout(() => { window.location.href = ANDROID_URL; }, 600);
+        trackAndRedirect('android', ANDROID_URL);
       } else {
         statusEl.textContent = "Elige tu plataforma";
+        const btnIos = document.getElementById("btn-ios");
+        const btnAndroid = document.getElementById("btn-android");
+        if (btnIos) btnIos.addEventListener('click', () => {
+          if (typeof gtag === 'function') gtag('event', 'store_click', { platform: 'ios' });
+        });
+        if (btnAndroid) btnAndroid.addEventListener('click', () => {
+          if (typeof gtag === 'function') gtag('event', 'store_click', { platform: 'android' });
+        });
       }
     }
+
     window.addEventListener("DOMContentLoaded", detectAndRedirect);
   </script>
 </head>
@@ -104,16 +124,14 @@
     <img src="app-icon.png" alt="Micalet Logo" class="app-icon" onerror="this.src='icon.png'; this.onerror=function(){this.style.display='none';};">
     <h1>Micalet</h1>
     <p class="tagline">Noticias locales, agenda de eventos culturales y deportivos, y previsión del tiempo en Valencia.</p>
-
     <div class="badge-group">
       <!-- iOS Button -->
-      <a id="btn-ios" href="https://apps.apple.com/app/idYOUR_APPLE_APP_ID" class="store-btn">
+      <a id="btn-ios" href="https://apps.apple.com/app/id6833057197" class="store-btn">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
           <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 0.92-2.85-.9.04-2 .6-2.65 1.34-.56.63-.99 1.68-.87 2.69 1 .08 2.02-.48 2.6-1.18z"/>
         </svg>
         <span>Descargar en App Store</span>
       </a>
-
       <!-- Android Button -->
       <a id="btn-android" href="https://play.google.com/store/apps/details?id=com.micalet.app" class="store-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -121,9 +139,12 @@
         </svg>
         <span>Disponible en Google Play</span>
       </a>
-    </div>
-
     <div id="status-text" class="status-msg"></div>
+    <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(128,128,128,0.2); font-size: 12px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+      <a href="/privacy.html" style="color: var(--text-muted); text-decoration: none;">Privacidad</a>
+      <a href="/terms.html" style="color: var(--text-muted); text-decoration: none;">Términos</a>
+      <a href="/contact.html" style="color: var(--text-muted); text-decoration: none;">Soporte</a>
+    </div>
   </div>
 </body>
 </html>
